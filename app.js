@@ -9,7 +9,7 @@ const calculator = document.querySelector('#calculator');
 /*-------------------------------- Variables --------------------------------*/
 
 let firstNumber = '';
-let currentNumber = '';
+let secondNumber = '';
 let operator = null;
 
 /*------------------------ Cached Element References ------------------------*/
@@ -18,8 +18,8 @@ let operator = null;
 
 for (let i = 0; i < numberButtons.length; i++) {
   numberButtons[i].addEventListener('click', function (event) {
-    currentNumber += event.target.innerText;
-    display.innerText = currentNumber;
+    secondNumber += event.target.innerText;
+    display.innerText = secondNumber;
   });
 }
 
@@ -28,11 +28,11 @@ for (let i = 0; i < operatorButtons.length; i++) {
     if (event.target.textContent === 'C') {
       display.textContent = '0';
       firstNumber = '';
-      currentNumber = '';
+      secondNumber = '';
     } else {
       operator = event.target.innerText;
-      firstNumber = currentNumber;
-      currentNumber = '';
+      firstNumber = secondNumber;
+      secondNumber = '';
       display.innerText = operator;
     }
   });
@@ -41,7 +41,7 @@ for (let i = 0; i < operatorButtons.length; i++) {
 equalsButton.addEventListener('click', function (event) {
   let result;
   const num1 = Number(firstNumber);
-  const num2 = Number(currentNumber);
+  const num2 = Number(secondNumber);
 
   if (operator === '+') {
     result = num1 + num2;
@@ -54,7 +54,7 @@ equalsButton.addEventListener('click', function (event) {
   }
   display.innerText = result;
   firstNumber = result;
-  currentNumber = result;
+  secondNumber = result;
   operator = null;
 });
 
